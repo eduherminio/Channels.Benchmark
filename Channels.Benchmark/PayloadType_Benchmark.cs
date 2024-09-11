@@ -6,15 +6,15 @@ namespace Channels.Benchmark;
 
 public class PayloadType_Benchmark : BaseBenchmark
 {
-    private static readonly MyPayLoad _payload = new MyPayLoad(33592128, 27, 20, [352512, 684368, 345472, 691648, 344336, 675376, 353536, 699696, 345488, 701104, 344336, 709312, 345344, 706368, 346384, 699152, 345376, 689824, 344336, 688656, 345344, 697856, 344336, 705168, 345344, 714496, 338192, 671632, 345248, 678128, 353552, 714080, 346512, 693136, 345376, 676416, 352528, 717120, 345472], -500, +500);
+    private static readonly MyPayLoad _payload = new(33592128, 27, 20, [352512, 684368, 345472, 691648, 344336, 675376, 353536, 699696, 345488, 701104, 344336, 709312, 345344, 706368, 346384, 699152, 345376, 689824, 344336, 688656, 345344, 697856, 344336, 705168, 345344, 714496, 338192, 671632, 345248, 678128, 353552, 714080, 346512, 693136, 345376, 676416, 352528, 717120, 345472], -500, +500);
 
     private readonly MyPayLoad _rawPayload = _payload;
-    private readonly MyObject_Class_ImplementsInterface _class = new MyObject_Class_ImplementsInterface(_payload);
-    private readonly MyObject_Struct _struct = new MyObject_Struct(_payload);
-    private readonly MyObject_ReadonlyStruct _readonlyStruct = new MyObject_ReadonlyStruct(_payload);
-    private readonly MyObject_RecordClass _recordClass = new MyObject_RecordClass(_payload);
-    private readonly MyObject_RecordStruct _recordStruct = new MyObject_RecordStruct(_payload);
-    private readonly MyObject_ReadonlyRecordStruct _readonlyRecordStruct = new MyObject_ReadonlyRecordStruct(_payload);
+    private readonly MyObject_Class_ImplementsInterface _class = new(_payload);
+    private readonly MyObject_Struct _struct = new(_payload);
+    private readonly MyObject_ReadonlyStruct _readonlyStruct = new(_payload);
+    private readonly MyObject_RecordClass _recordClass = new(_payload);
+    private readonly MyObject_RecordStruct _recordStruct = new(_payload);
+    private readonly MyObject_ReadonlyRecordStruct _readonlyRecordStruct = new(_payload);
 
 #pragma warning disable S1104 // Fields should not have public accessibility
     [Params(1, 10, 100, 1_000, 10_000)]
