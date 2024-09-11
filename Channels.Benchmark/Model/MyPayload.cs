@@ -3,11 +3,17 @@
 public sealed class MyPayLoad
 {
     public int BestMove { get; init; }
+
     public int Evaluation { get; init; }
+
     public int Depth { get; set; }
+
     public int[] Moves { get; init; }
+
     public int Alpha { get; init; }
+
     public int Beta { get; init; }
+
     public int Mate { get; init; }
 
     public int DepthReached { get; set; }
