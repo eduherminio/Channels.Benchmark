@@ -1,6 +1,6 @@
 ﻿namespace Channels.Benchmark.Model;
 
-public sealed class MyPayLoad
+public sealed class MyPayLoad : IMyObjectInterface
 {
     public int BestMove { get; init; }
 
