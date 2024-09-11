@@ -1,4 +1,4 @@
-# ChannelOfT_Benchmark
+# PayloadType_Benchmark
 
 
 ## Windows x64

@@ -5,5 +5,5 @@ namespace Channels.Benchmark;
 [MarkdownExporterAttribute.GitHub]
 [HtmlExporter]
 [MemoryDiagnoser]
-//[NativeMemoryProfiler]
+//[BenchmarkDotNet.Diagnostics.Windows.Configs.NativeMemoryProfiler]
 public class BaseBenchmark;
