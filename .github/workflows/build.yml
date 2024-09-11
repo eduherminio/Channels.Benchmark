@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  benchmark:
+  build:
     runs-on: ${{ matrix.os }}
 
     strategy:

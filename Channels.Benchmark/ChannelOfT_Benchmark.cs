@@ -6,16 +6,10 @@ namespace Channels.Benchmark;
 
 public class ChannelOfT_Benchmark : BaseBenchmark
 {
-    public static IEnumerable<MyPayLoad> Data =>
-    [
-        new MyPayLoad(33592128, 27, 20, [33592128], -500, +500 ),
-        new MyPayLoad(33592128, 27, 20, [33591088, 33975472, 112608, 480352, 109456, 477200, 47968, 495952, 187344, 417008, 24220320, 18256304], -500, +500 ),
-        new MyPayLoad(33592128, 27, 20, [33592128, 33974432, 112608, 477200, 109456, 33976512, 166864, 412848, 44848, 536656, 101055424, 480352, 93856, 18312528, 24276512, 101390400, 43808, 544800, 177056, 19426624], -500, +500 ),
-        new MyPayLoad(33592128, 27, 20, [352512, 684368, 345472, 691648, 344336, 675376, 353536, 699696, 345488, 701104, 344336, 709312, 345344, 706368, 346384, 699152, 345376, 689824, 344336, 688656, 345344, 697856, 344336, 705168, 345344, 714496, 338192, 671632, 345248, 678128, 353552, 714080, 346512, 693136, 345376, 676416, 352528, 717120, 345472], -500, +500),
-    ];
+    private readonly MyObject_Class_ImplementsInterface _input = new(new MyPayLoad(33592128, 27, 20, [352512, 684368, 345472, 691648, 344336, 675376, 353536, 699696, 345488, 701104, 344336, 709312, 345344, 706368, 346384, 699152, 345376, 689824, 344336, 688656, 345344, 697856, 344336, 705168, 345344, 714496, 338192, 671632, 345248, 678128, 353552, 714080, 346512, 693136, 345376, 676416, 352528, 717120, 345472], -500, +500));
 
 #pragma warning disable S1104 // Fields should not have public accessibility
-    [Params(1, 10, 100, 1000)]
+    [Params(1, 10, 100, 1_000, 10_000)]
     public int N;
 #pragma warning restore S1104 // Fields should not have public accessibility
 
@@ -31,7 +25,6 @@ public class ChannelOfT_Benchmark : BaseBenchmark
     private readonly Channel<MyObject_Class_ImplementsInterface> _concreteClassChannel = Channel.CreateBounded<MyObject_Class_ImplementsInterface>(_boundedChannelOptions);
 
     [Benchmark(Baseline = true)]
-    [ArgumentsSource(nameof(Data))]
     public async Task Object(MyPayLoad payload)
     {
         ChannelWriter<object> writer = _objectChannel.Writer;
@@ -39,8 +32,7 @@ public class ChannelOfT_Benchmark : BaseBenchmark
 
         for (int i = 0; i < N; i++)
         {
-            MyObject_Class_ImplementsInterface input = new(payload);
-            writer.TryWrite(input);
+            writer.TryWrite(_input);
 
             var output = reader.ReadAsync();
             await output;
@@ -48,7 +40,6 @@ public class ChannelOfT_Benchmark : BaseBenchmark
     }
 
     [Benchmark]
-    [ArgumentsSource(nameof(Data))]
     public async Task Interface(MyPayLoad payload)
     {
         ChannelWriter<IMyObjectInterface> writer = _interfaceChannel.Writer;
@@ -56,8 +47,7 @@ public class ChannelOfT_Benchmark : BaseBenchmark
 
         for (int i = 0; i < N; i++)
         {
-            MyObject_Class_ImplementsInterface input = new(payload);
-            writer.TryWrite(input);
+            writer.TryWrite(_input);
 
             var output = reader.ReadAsync();
             await output;
@@ -65,16 +55,14 @@ public class ChannelOfT_Benchmark : BaseBenchmark
     }
 
     [Benchmark]
-    [ArgumentsSource(nameof(Data))]
-    public async Task ConcreteClass(MyPayLoad payload)
+    public async Task ConcreteClass()
     {
         ChannelWriter<MyObject_Class_ImplementsInterface> writer = _concreteClassChannel.Writer;
         ChannelReader<MyObject_Class_ImplementsInterface> reader = _concreteClassChannel.Reader;
 
         for (int i = 0; i < N; i++)
         {
-            MyObject_Class_ImplementsInterface input = new(payload);
-            writer.TryWrite(input);
+            writer.TryWrite(_input);
 
             var output = reader.ReadAsync();
             await output;
