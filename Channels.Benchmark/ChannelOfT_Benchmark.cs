@@ -25,7 +25,7 @@ public class ChannelOfT_Benchmark : BaseBenchmark
     private readonly Channel<MyObject_Class_ImplementsInterface> _concreteClassChannel = Channel.CreateBounded<MyObject_Class_ImplementsInterface>(_boundedChannelOptions);
 
     [Benchmark(Baseline = true)]
-    public async Task Object(MyPayLoad payload)
+    public async Task Object()
     {
         ChannelWriter<object> writer = _objectChannel.Writer;
         ChannelReader<object> reader = _objectChannel.Reader;
@@ -40,7 +40,7 @@ public class ChannelOfT_Benchmark : BaseBenchmark
     }
 
     [Benchmark]
-    public async Task Interface(MyPayLoad payload)
+    public async Task Interface()
     {
         ChannelWriter<IMyObjectInterface> writer = _interfaceChannel.Writer;
         ChannelReader<IMyObjectInterface> reader = _interfaceChannel.Reader;
