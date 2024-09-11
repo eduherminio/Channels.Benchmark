@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# S101: Types should be named in PascalCase
+dotnet_diagnostic.S101.severity = none
+
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
+
+# IDE0290: Use primary constructor
+csharp_style_prefer_primary_constructors = false
