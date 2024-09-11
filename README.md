@@ -4,5 +4,7 @@
 
 Set of Benchmarks to measure the performance of different [`System.Threading.Channels`](https://learn.microsoft.com/en-us/dotnet/core/extensions/channels) configurations.
 
+- [`Channel<object>` vs `Channel<interface>` vs `Channel<concrete_class>`](Results/ChannelOfT_Benchmark.md)
+
 [buildlink]: https://github.com/eduherminio/Channels.Benchmarks/actions/build/ci.yml
 [buildlogo]: https://github.com/eduherminio/Channels.Benchmarks/actions/build/ci.yml/badge.svg

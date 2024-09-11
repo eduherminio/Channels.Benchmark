@@ -12,4 +12,8 @@
     <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.14.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="../Results/*"/>
+  </ItemGroup>
+
 </Project>
